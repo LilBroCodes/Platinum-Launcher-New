@@ -1,0 +1,9 @@
+Changelog:
+-Added editor unpause on ESC (like in [BEv4](https://github.com/HJfod/BetterEdit/blob/v4/hooks/EditorPauseLayer.cpp) by [HJFod](https://github.com/HJfod));
+-Fixed a crash when exiting the editor. (normally)
+
+Press ~ or F1 or F11 to open menu.
+
+Extract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree.
+
+![youhaveoneissue](https://github.com/user-attachments/assets/8d5785d9-e842-40b0-9205-98a3863d1a3b)

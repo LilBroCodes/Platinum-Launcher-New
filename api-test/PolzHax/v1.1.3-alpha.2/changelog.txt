@@ -1,0 +1,9 @@
+First ever fix.
+
+Changelog:
+-Fixed game crash while you pressing Save And Play in editor.
+NOTE: This fix isn't that good, if you pause in editor objects will be deselected.
+
+Press ~ or F1 or F11 to open menu.
+
+Replace existing files.

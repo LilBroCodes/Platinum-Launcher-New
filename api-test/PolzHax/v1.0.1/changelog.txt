@@ -1,0 +1,9 @@
+Changelog:
+-Added Confirm Exit (By @Taswert);
+-Re-Added Hide Pause Menu (it was causing game crash on beta test);
+-Fixed editor can't be entered (i forgot about hideui button textures);
+-Removed debug labels in editor.
+
+Replace existing files with new one.
+
+![Снимок](https://github.com/Pololak/PolzHax/assets/108807351/4bcc8aab-e087-4f3d-b9fa-b52c0ed49301)

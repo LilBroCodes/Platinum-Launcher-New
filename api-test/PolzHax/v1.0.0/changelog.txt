@@ -1,0 +1,7 @@
+First PolzHax Public Release.
+
+Includes 80+ hacks.
+
+**Press F11 to open hack**
+
+Mod is not compatible with MNH (will be fixed soon)

@@ -1,0 +1,7 @@
+Small update.
+
+Changelog:
+-Added song fix on copy (Thanks MNH);
+-Updated source code (wow).
+
+About preview mode: It works, but very strange and unstable. I asked [Mat](https://github.com/matcool) to check what the problem is and maybe he'll tell me what's wrong and I'll fix it.

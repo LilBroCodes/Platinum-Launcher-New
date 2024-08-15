@@ -1,1 +1,0 @@
-put the two files in the gdps folder (typically `C:\Program Files (x86)\1.9 GDPS\GDPS`)

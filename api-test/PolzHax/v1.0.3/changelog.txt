@@ -1,0 +1,8 @@
+Changelog:
+-Added Mouse Wheel Zoom in Editor (Thanks MNH);
+-Added 461-466 objects to editor (second type of bushes that don't overlapping player, thanks to Waffles); 
+-Added Paste String (Thanks MNH and @Capeling (he fixed it in his own MNH fork);
+-Added Color Picker (also from MNH);
+-Menu can be opened now by pressing F1 and ~ like Mat's Hacks (F11 also works).
+
+Preview Mode? Trying...

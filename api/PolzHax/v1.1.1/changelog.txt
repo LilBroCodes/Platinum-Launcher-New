@@ -1,9 +1,0 @@
-Changelog:
--StartPos Switcher (by @Taswert);
--Options Button in PauseLayer and EditorPauseLayer (can be useful if you need to toggle "Small Editor Step").
-
-To switch StartPoses, press Q or E.
-
-Press ~ or F1 or F11 to open menu.
-
-Replace existing files.

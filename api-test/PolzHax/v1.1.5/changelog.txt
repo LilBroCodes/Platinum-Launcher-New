@@ -1,0 +1,13 @@
+Changelog:
+-Fixed misspells in menu (Thanks to _painandsuffering_);
+-Added delay for tooltips;
+-Percentage can be turned off/on withou re-entering the level;
+-Added static white color to editor (by @Taswert);
+-Also changed "3D-Line" and "White" buttons position;
+-Added Low and Medium texture variant for GDShare and Hide UI buttons.
+
+Press ~ or F1 or F11 to open menu.
+
+Extract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree.
+
+![white](https://github.com/user-attachments/assets/3f4a84c6-1e7a-41f9-ba13-068bda718cbb)

@@ -1,0 +1,5 @@
+minor preview mode fixes
+
+put the two dlls in the gdps folder (typically `C:\Program Files (x86)\1.9 GDPS\GDPS`)
+
+press F1 to toggle menu

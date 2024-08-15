@@ -1,6 +1,0 @@
-Changelog:
--Fixed white color crash thing in preview mode.
-
-Press ~ or F1 or F11 to open menu.
-
-Extract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree.
