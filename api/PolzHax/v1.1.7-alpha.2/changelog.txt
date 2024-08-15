@@ -1,0 +1,10 @@
+Whooops...
+
+Changelog:
+-Fixed editor crash.
+
+Join the discord server: https://discord.gg/4h6yHgE4Gj
+
+Press ~ or F1 or F11 to open menu.
+
+Extract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree.

@@ -1,0 +1,9 @@
+Changelog:
+-Added Object Info in Editor. (by @Taswert and @Pololak).
+
+Press ~ or F1 or F11 to open menu.
+
+Replace existing files.
+![extendedobject](https://github.com/user-attachments/assets/f47d3360-8799-4cc3-a6cb-4defb01a5f57)
+
+

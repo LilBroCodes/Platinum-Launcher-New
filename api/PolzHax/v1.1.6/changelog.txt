@@ -1,0 +1,13 @@
+Changelog:
+-Added delete button like in 2.0-2.2 (will fix it in future);
+-Added GMD Export to LevelInfoLayer (like in original GDShare);
+-Added Lock Cursor (can be buggy);
+-Added Editor Freeze Fix and Invisible Dual Fix from MNH (i forgot about them);
+-Fixed white color in preview mode (again);
+-If custom texture didn't exists, it will be replaced by default one from GD (like GDShare buttons replaced with download buttons).
+
+Join the discord server: https://discord.gg/4h6yHgE4Gj
+
+Press ~ or F1 or F11 to open menu.
+
+Extract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree.

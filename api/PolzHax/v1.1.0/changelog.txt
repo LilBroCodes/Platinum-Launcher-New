@@ -1,0 +1,9 @@
+"Bye-bye, Mat's Nice Hacks" update.
+
+Changelog:
+-Editor Preview Mode (Finally I fixed it, also thanks to [Mat](https://github.com/matcool) for help);
+-Fixed cursor not hiding when restarting the level.
+
+**Press ~ or F1 or F11 to open menu.**
+
+Replace existing files.

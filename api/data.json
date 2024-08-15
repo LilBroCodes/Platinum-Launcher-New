@@ -1,0 +1,104 @@
+[
+ {
+  "id": 29,
+  "version_number": "v1.1.7-alpha.2",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.7-alpha.2.zip",
+  "changelog": "Whooops...\n\nChangelog:\n-Fixed editor crash.\n\nJoin the discord server: https://discord.gg/4h6yHgE4Gj\n\nPress ~ or F1 or F11 to open menu.\n\nExtract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree."
+ },
+ {
+  "id": 28,
+  "version_number": "v1.1.7-alpha.1",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.7-alpha.1.zip",
+  "changelog": "Biggest update.\n\nChangelog:\n-Hitboxes (by @Taswert) (player hitbox only available with &quot;Show Hitboxes on Death&quot;, also they doesn&#039;t work in editor);\n-Hitboxes on Death;\n-Removed &quot;Confirm Exit&quot; (for some reason it crashes game with hitboxes turned on/off);\n-Crash-Logger (by @Taswert);\n-&quot;Reload Textures&quot; button (basically, it&#039;s just a port of geode mod by [Weebifying](https://github.com/Weebifying/restartbutton-geode));\n-&quot;Small Editor Step&quot; and &quot;Preview Mode&quot; checkboxes in EditorPauseLayer;\n-&quot;Go To All&quot; and &quot;Next Free&quot; arrows (by @Taswert);\n-GUI Rework;\n-Switched color format to RGBA8888 (thanks to Nikolyas) (better texture quality ex. gold font);\n-&quot;TrashCan&quot; button disables if no objects selected (by @Taswert);\n-Fixed coins shows as uncollected after collecting;\n-Fixed trigger duration in preview mode (if fadetime is &lt; 0, it will reset to 0);\n-Added tenths to object info and color ids;\n-Added texture name to cocos explorer;\n-Added level length to EditorPauseLayer. \n\nJoin the discord server: https://discord.gg/4h6yHgE4Gj\n\nPress ~ or F1 or F11 to open menu.\n\nExtract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree."
+ },
+ {
+  "id": 27,
+  "version_number": "v1.0.2",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.0.2.zip",
+  "changelog": "Changelog:\n-Added GDShare (thanks Mat&#039;s Nice Hacks);\n-Replaced Mat&#039;s GDShare buttons with HJFod&#039;s one.\n\nAlso, I&#039;m trying to port Preview Mode from MNH, but Oh My Mat, why is it so incompatible with gd.h.\n\n**Press F11 to open menu**\n![gdshareshowcase](https://github.com/Pololak/PolzHax/assets/108807351/9d6c10f4-2748-4a27-8275-211314755dc4)\n"
+ },
+ {
+  "id": 26,
+  "version_number": "v1.1.6",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.6.zip",
+  "changelog": "Changelog:\n-Added delete button like in 2.0-2.2 (will fix it in future);\n-Added GMD Export to LevelInfoLayer (like in original GDShare);\n-Added Lock Cursor (can be buggy);\n-Added Editor Freeze Fix and Invisible Dual Fix from MNH (i forgot about them);\n-Fixed white color in preview mode (again);\n-If custom texture didn&#039;t exists, it will be replaced by default one from GD (like GDShare buttons replaced with download buttons).\n\nJoin the discord server: https://discord.gg/4h6yHgE4Gj\n\nPress ~ or F1 or F11 to open menu.\n\nExtract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree."
+ },
+ {
+  "id": 25,
+  "version_number": "v1.1.4",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.4.zip",
+  "changelog": "Changelog:\n-Added editor unpause on ESC (like in [BEv4](https://github.com/HJfod/BetterEdit/blob/v4/hooks/EditorPauseLayer.cpp) by [HJFod](https://github.com/HJfod));\n-Fixed a crash when exiting the editor. (normally)\n\nPress ~ or F1 or F11 to open menu.\n\nExtract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree.\n\n![youhaveoneissue](https://github.com/user-attachments/assets/8d5785d9-e842-40b0-9205-98a3863d1a3b)\n"
+ },
+ {
+  "id": 24,
+  "version_number": "v1.0.0",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.0.0.zip",
+  "changelog": "First PolzHax Public Release.\n\nIncludes 80+ hacks.\n\n**Press F11 to open hack**\n\nMod is not compatible with MNH (will be fixed soon)"
+ },
+ {
+  "id": 23,
+  "version_number": "v1.1.5",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.5.zip",
+  "changelog": "Changelog:\n-Fixed misspells in menu (Thanks to _painandsuffering_);\n-Added delay for tooltips;\n-Percentage can be turned off/on withou re-entering the level;\n-Added static white color to editor (by @Taswert);\n-Also changed &quot;3D-Line&quot; and &quot;White&quot; buttons position;\n-Added Low and Medium texture variant for GDShare and Hide UI buttons.\n\nPress ~ or F1 or F11 to open menu.\n\nExtract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree.\n\n![white](https://github.com/user-attachments/assets/3f4a84c6-1e7a-41f9-ba13-068bda718cbb)\n"
+ },
+ {
+  "id": 22,
+  "version_number": "v1.1.3",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.3.zip",
+  "changelog": "Changelog:\n-Added Object Info in Editor. (by @Taswert and @Pololak).\n\nPress ~ or F1 or F11 to open menu.\n\nReplace existing files.\n![extendedobject](https://github.com/user-attachments/assets/f47d3360-8799-4cc3-a6cb-4defb01a5f57)\n\n\n"
+ },
+ {
+  "id": 21,
+  "version_number": "v1.1.2",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.2.zip",
+  "changelog": "**GUI Update.**\n\nChangelog:\n-Changed font from default to Muli-Semibold (like in Mat&#039;s Hacks);\n-Added tooltips.\n\nPress ~ or F1 or F11 to open menu.\n\nReplace existing files.\n![Base Profile Screenshot 2024 07 19 - 23 32 40 12](https://github.com/user-attachments/assets/32320fea-0946-41dc-9ac8-d513d9ab38cb)\n"
+ },
+ {
+  "id": 20,
+  "version_number": "v1.0.1",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.0.1.zip",
+  "changelog": "Changelog:\n-Added Confirm Exit (By @Taswert);\n-Re-Added Hide Pause Menu (it was causing game crash on beta test);\n-Fixed editor can&#039;t be entered (i forgot about hideui button textures);\n-Removed debug labels in editor.\n\nReplace existing files with new one.\n\n![\u0421\u043d\u0438\u043c\u043e\u043a](https://github.com/Pololak/PolzHax/assets/108807351/4bcc8aab-e087-4f3d-b9fa-b52c0ed49301)"
+ },
+ {
+  "id": 19,
+  "version_number": "v1.0.4",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.0.4.zip",
+  "changelog": "Small update.\n\nChangelog:\n-Added song fix on copy (Thanks MNH);\n-Updated source code (wow).\n\nAbout preview mode: It works, but very strange and unstable. I asked [Mat](https://github.com/matcool) to check what the problem is and maybe he&#039;ll tell me what&#039;s wrong and I&#039;ll fix it."
+ },
+ {
+  "id": 18,
+  "version_number": "v1.1.5-alpha.2",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.5-alpha.2.zip",
+  "changelog": "Changelog:\n-Fixed white color crash thing in preview mode.\n\nPress ~ or F1 or F11 to open menu.\n\nExtract all the files from the archive to your gd folder, if it asks you to replace the existing files, agree."
+ },
+ {
+  "id": 17,
+  "version_number": "v1.1.1",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.1.zip",
+  "changelog": "Changelog:\n-StartPos Switcher (by @Taswert);\n-Options Button in PauseLayer and EditorPauseLayer (can be useful if you need to toggle &quot;Small Editor Step&quot;).\n\nTo switch StartPoses, press Q or E.\n\nPress ~ or F1 or F11 to open menu.\n\nReplace existing files."
+ },
+ {
+  "id": 16,
+  "version_number": "v1.0.3",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.0.3.zip",
+  "changelog": "Changelog:\n-Added Mouse Wheel Zoom in Editor (Thanks MNH);\n-Added 461-466 objects to editor (second type of bushes that don&#039;t overlapping player, thanks to Waffles); \n-Added Paste String (Thanks MNH and @Capeling (he fixed it in his own MNH fork);\n-Added Color Picker (also from MNH);\n-Menu can be opened now by pressing F1 and ~ like Mat&#039;s Hacks (F11 also works).\n\nPreview Mode? Trying..."
+ },
+ {
+  "id": 15,
+  "version_number": "v1.1.3-alpha.2",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.3-alpha.2.zip",
+  "changelog": "First ever fix.\n\nChangelog:\n-Fixed game crash while you pressing Save And Play in editor.\nNOTE: This fix isn&#039;t that good, if you pause in editor objects will be deselected.\n\nPress ~ or F1 or F11 to open menu.\n\nReplace existing files."
+ },
+ {
+  "id": 14,
+  "version_number": "v1.1.0",
+  "file_path": "/data/launcher/branches/1/PolzHax/v1.1.0.zip",
+  "changelog": "&quot;Bye-bye, Mat&#039;s Nice Hacks&quot; update.\n\nChangelog:\n-Editor Preview Mode (Finally I fixed it, also thanks to [Mat](https://github.com/matcool) for help);\n-Fixed cursor not hiding when restarting the level.\n\n**Press ~ or F1 or F11 to open menu.**\n\nReplace existing files."
+ },
+ {
+  "id": 9,
+  "version_number": "1.0",
+  "file_path": "./data.zip",
+  "changelog": "Test"
+ }
+]
