@@ -1,8 +1,0 @@
-Changelog:
--Added GDShare (thanks Mat's Nice Hacks);
--Replaced Mat's GDShare buttons with HJFod's one.
-
-Also, I'm trying to port Preview Mode from MNH, but Oh My Mat, why is it so incompatible with gd.h.
-
-**Press F11 to open menu**
-![gdshareshowcase](https://github.com/Pololak/PolzHax/assets/108807351/9d6c10f4-2748-4a27-8275-211314755dc4)
