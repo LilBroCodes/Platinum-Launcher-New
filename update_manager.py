@@ -73,7 +73,10 @@ def download_and_extract(version_id: int, extract_path: str, is_tpack=False):
             for file_info in zip_ref.infolist():
                 target_file = os.path.join(extract_path, file_info.filename)
                 if os.path.exists(target_file):
-                    os.remove(target_file)
+                    try:
+                        os.remove(target_file)
+                    except PermissionError:
+                        pass
         zip_ref.extractall(extract_path)
 
     os.unlink(zip_file_path)

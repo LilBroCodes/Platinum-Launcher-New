@@ -13,6 +13,8 @@ import gd
 
 texture_pack_option_menu = None
 mod_option_menu = None
+version_option_menu = None
+root = None
 
 
 def launch():
@@ -83,14 +85,52 @@ def download_version(version):
 
 
 def download():
-    config = update_manager.load_config()
-    mods = config["mods"]
-    game_version = config["game_version"]
+    global texture_pack_option_menu
+    global mod_option_menu
+    global version_option_menu
+
+    game_version_number = version_option_menu.get()
+    versions = api.get_versions(2)
+    version = [i for i in versions if i.get("version_number") == game_version_number]
+    game_version = version[0].get("id")
+    mods = []
+
+    if texture_pack_option_menu.get() != "None":
+        tpack_version_number = texture_pack_option_menu.get()
+        versions = api.get_versions(5)
+        version = [i for i in versions if i.get("display_name") == tpack_version_number]
+        data = {
+            "id": int(version[0].get("id")),
+            "branch_id": 5
+        }
+        mods.append(data)
+    if mod_option_menu.get() == "PolzHax":
+        mod_version_number = mod_option_menu.get()
+        versions = api.get_versions(1)
+        versions.sort(key=lambda x: x["id"], reverse=True)
+        data = {
+            "id": int(versions[0].get("id")),
+            "branch_id": 1
+        }
+        mods.append(data)
+    if mod_option_menu.get() == "Mat's Nice Hacks":
+        mod_version_number = mod_option_menu.get()
+        versions = api.get_versions(3)
+        versions.sort(key=lambda x: x["id"], reverse=True)
+        data = {
+            "id": int(versions[0].get("id")),
+            "branch_id": 3
+        }
+        mods.append(data)
+
+    update_manager.change_config(game_version, mods)
 
     def run_and_popup():
         update_manager.install_game_and_mods(mods, game_version)
-        info_popup("textOnly", "Info", text="Download complete.", do_exit=False, width=200, height=150,
-                   font_family="Roboto Medium", close="Ok")
+        root.after(0, lambda: info_popup("textOnly", "Info", text="Download complete.", do_exit=False, width=200,
+                                         height=150,
+                                         font_family="Roboto Medium", close="Ok"))
+        root.after(0, load)
 
     thread = threading.Thread(target=run_and_popup)
     thread.start()
@@ -104,6 +144,12 @@ def load():
     global version_option_menu
     config = update_manager.load_config()
     if config.get("game_version") != None:
+        game_version = config.get("game_version")
+        versions = api.get_versions(2)
+        version = [i for i in versions if i.get("id") == game_version]
+        version = version[0]
+        version_option_menu.set(version.get("version_number"))
+        print(f"#DEBUG | Loaded game version {version.get('version_number')}, data {version}")
         mod_option_menu.configure(state="normal")
         texture_pack_option_menu.configure(state="normal")
     for mod in config.get("mods"):
@@ -122,15 +168,10 @@ def load():
         if branch_info["type"] == "mod" and branch_info.get("mod_type") == "Client":
             print(f"#DEBUG | Loaded mod {display_name}, version {version}")
             mod_option_menu.set(display_name)
-    game_version = config.get("game_version")
-    versions = api.get_versions(2)
-    version = [i for i in versions if i.get("id") == game_version]
-    version = version[0]
-    version_option_menu.set(version.get("version_number"))
-    print(f"#DEBUG | Loaded game version {version.get('version_number')}, data {version}")
 
 
 def main():
+    global root
     root = ctk.CTk()
     root.title("Platinum GDPS Launcher")
     root.geometry("1000x750")

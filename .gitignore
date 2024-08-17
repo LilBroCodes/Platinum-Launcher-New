@@ -1,3 +1,5 @@
 .zed/
 .venv/
+.build/
+.target/
 api-test
