@@ -23,7 +23,8 @@ def launch():
     exe_path = os.path.join(gdps_path, "PlatinumGDPS.exe")
     if os.path.exists(exe_path):
         print(f"#DEBUG | Launching GDPS at {exe_path}")
-        gd.universal_exec_open(exe_path, [], working_directory=gdps_path)
+        gd_thread = threading.Thread(target=gd.universal_exec_open, args=(exe_path, [], gdps_path))
+        gd_thread.start()
     else:
         info_popup(text="GDPS Not Installed.", title="Error", close="Ok", height=150, popup_type="textOnly")
 
