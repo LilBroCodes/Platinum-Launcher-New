@@ -51,6 +51,7 @@ def creds():
 
         Misc:
             Poggers hosting service - Jean
+            Account proxy (node.js version) - Jean
     """
     info_popup("textOnly", "Credits", text=data, do_exit=False, width=450, height=400, font_family="Roboto Medium")
 
@@ -196,7 +197,7 @@ def main():
     root = ctk.CTk()
     root.title("Platinum GDPS Launcher")
     root.geometry("1000x750")
-    root.iconbitmap("data/icon.ico")
+    root.iconbitmap("data/icon.png")
     img = tk.PhotoImage(file="data/icon.png")
     root.tk.call('wm', 'iconphoto', root._w, img)
 
@@ -212,7 +213,7 @@ def main():
                               text_color="#909090")
     text_label.pack(side="left", padx=10, pady=10)
 
-    version_label = ctk.CTkLabel(bottom_frame, text="Platinum GDPS Launcher pre-01", font=(font_family, 16),
+    version_label = ctk.CTkLabel(bottom_frame, text="Platinum GDPS Launcher 1.1", font=(font_family, 16),
                                  text_color="#909090")
     version_label.pack(side="right", padx=10, pady=10)
 
