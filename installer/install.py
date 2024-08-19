@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from tkinter import filedialog, messagebox, PhotoImage
+from tkinter import filedialog, messagebox, PhotoImage, Scrollbar, VERTICAL
 import json
 import shutil
 import os
@@ -13,7 +13,7 @@ class InstallerApp(ctk.CTk):
         super().__init__()
 
         self.title("Platinum Launcher Installer")
-        self.geometry("400x300")
+        self.geometry("800x600")
         self.resizable(False, False)
         self.set_icon("data/icon.png")
 
@@ -23,14 +23,14 @@ class InstallerApp(ctk.CTk):
 
         # Create and pack frames
         self.frames = {
-            "welcome": WelcomeFrame(self),
+            "license": LicenseFrame(self),
             "select_dir": SelectDirFrame(self),
             "specify_path": SpecifyPathFrame(self),
             "complete": CompleteFrame(self)
         }
 
-        # Display the welcome frame initially
-        self.show_frame("welcome")
+        # Display the license frame initially
+        self.show_frame("license")
 
     def get_resource_path(self, relative_path):
         """Get the absolute path to a resource, relative to the executable or script."""
@@ -89,18 +89,44 @@ class InstallerApp(ctk.CTk):
         self.quit()
 
 
-class WelcomeFrame(ctk.CTkFrame):
+class LicenseFrame(ctk.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
         self.create_widgets()
 
     def create_widgets(self):
-        a = ctk.CTkLabel(self, text="Welcome to the Platinum Launcher Installer", font=(FONT_FAMILY, 16))
-        a.pack(anchor="nw", padx=10, pady=10)
-        b = ctk.CTkButton(self, fg_color="#444444", hover_color="#555555",
-                          text="Next", command=lambda: self.master.show_frame("select_dir"))
-        b.pack(side="bottom", anchor="se", padx=10, pady=10)
+        ctk.CTkLabel(self, text="License Agreement", font=(FONT_FAMILY, 16)).pack(anchor="nw", padx=10, pady=10)
+
+        # Create a frame to contain the textbox and scrollbar
+        text_frame = ctk.CTkFrame(self)
+        text_frame.pack(fill="both", expand=True, padx=10, pady=10)
+
+        # Create the scrollable text box
+        self.license_textbox = ctk.CTkTextbox(text_frame, wrap="word", font=(FONT_FAMILY, 12), height=100)
+        self.license_textbox.pack(side="left", fill="both", expand=True)
+
+        # Insert the license text into the text box
+        try:
+            with open("license.txt", "r") as file:
+                license_text = file.read()
+        except Exception as e:
+            license_text = str(e)
+        self.license_textbox.insert("1.0", license_text)
+        self.license_textbox.configure(state="disabled")  # Make the textbox read-only
+
+        # Accept and Decline buttons
+        self.accept_button = ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Accept", command=self.accept_license)
+        self.accept_button.pack(side="right", anchor="se", padx=10, pady=10)
+
+        self.decline_button = ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Decline", command=self.decline_license)
+        self.decline_button.pack(side="right", anchor="se", padx=10, pady=10)
+
+    def accept_license(self):
+        self.master.show_frame("select_dir")
+
+    def decline_license(self):
+        self.master.quit()
 
 
 class SelectDirFrame(ctk.CTkFrame):
@@ -121,10 +147,9 @@ class SelectDirFrame(ctk.CTkFrame):
         self.browse_button.pack(anchor="nw", padx=10, pady=10)
 
         ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Next",
-                      command=lambda: self.master.show_frame("specify_path")).pack(side="bottom", anchor="se",
-                                                                                   padx=10, pady=10)
+                      command=lambda: self.master.show_frame("specify_path")).pack(side="right", anchor="se", padx=10, pady=10)
         ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Back",
-                      command=lambda: self.master.show_frame("welcome")).place(x=10, y=262)
+                      command=lambda: self.master.show_frame("license")).pack(side="right", anchor="se", padx=10, pady=10)
 
     def select_dir(self):
         directory = filedialog.askdirectory()
@@ -151,9 +176,9 @@ class SpecifyPathFrame(ctk.CTkFrame):
         self.browse_button.pack(anchor="nw", padx=10, pady=10)
 
         ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Install",
-                      command=self.master.install).pack(side="bottom", anchor="se", padx=10, pady=10)
+                      command=self.master.install).pack(side="right", anchor="se", padx=10, pady=10)
         ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Back",
-                      command=lambda: self.master.show_frame("select_dir")).place(x=10, y=262)
+                      command=lambda: self.master.show_frame("select_dir")).pack(side="right", anchor="se", padx=10, pady=10)
 
     def select_path(self):
         path = filedialog.askdirectory()

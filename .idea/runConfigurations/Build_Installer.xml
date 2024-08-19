@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Build Installer" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="pyinstaller -y -F -w -n &quot;Platinum Launcher Installer&quot; -i .\icon.ico --distpath build/ --add-data &quot;Platinum Launcher.exe;.&quot; --add-data &quot;data;data&quot; --add-data &quot;icon.ico;.&quot; install.py" />
+    <option name="SCRIPT_TEXT" value="pyinstaller -y -F -w -n &quot;Platinum Launcher Installer&quot; -i .\icon.ico --distpath build/ --add-data &quot;Platinum Launcher.exe;.&quot; --add-data &quot;data;data&quot; --add-data &quot;license.txt;.&quot; install.py" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
