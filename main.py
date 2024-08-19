@@ -1,30 +1,37 @@
 import threading
-
+import _thread
 from PIL import Image
 import tkinter as tk
 import customtkinter as ctk
-from dialogue import info_popup
-import api
+
 from typing import List, Dict, Any
-import update_manager
 import os
 import appdata
+
+from dialogue import info_popup
+import api
+import update_manager
 import gd
+import middleman
 
 texture_pack_option_menu = None
 mod_option_menu = None
 version_option_menu = None
+middleman_enabled = False
 root = None
 
 
 def launch():
-    config_path = os.path.join(appdata.get_home_folder(), ".platinum-launcher")
+    config_path = appdata.get_home_folder()
     gdps_path = os.path.join(config_path, "GDPS")
     exe_path = os.path.join(gdps_path, "PlatinumGDPS.exe")
     if os.path.exists(exe_path):
         print(f"#DEBUG | Launching GDPS at {exe_path}")
         gd_thread = threading.Thread(target=gd.universal_exec_open, args=(exe_path, [], gdps_path))
         gd_thread.start()
+        if middleman_enabled:
+            proxy_thread = threading.Thread(target=middleman.run_server, args=())
+            proxy_thread.start()
     else:
         info_popup(text="GDPS Not Installed.", title="Error", close="Ok", height=150, popup_type="textOnly")
 
@@ -85,10 +92,11 @@ def download_version(version):
     texture_pack_option_menu.configure(state="normal")
 
 
-def download():
+def configure(popup=True):
     global texture_pack_option_menu
     global mod_option_menu
     global version_option_menu
+    global middleman_enabled
 
     game_version_number = version_option_menu.get()
     versions = api.get_versions(2)
@@ -124,8 +132,19 @@ def download():
         }
         mods.append(data)
 
-    update_manager.change_config(game_version, mods)
+    version_data = version[0]
+    middleman_enabled = True if version_data["middleman"] == 1 else False
+    update_manager.change_config(game_version, mods, middleman_enabled)
 
+    if popup:
+        info_popup("textOnly", "Info", text="Saved config.", do_exit=False, width=200, height=150,
+                   font_family="Roboto Medium", close="Ok")
+
+    return mods, game_version
+
+
+def download():
+    mods, game_version = configure(False)
     def run_and_popup():
         update_manager.install_game_and_mods(mods, game_version)
         root.after(0, lambda: info_popup("textOnly", "Info", text="Download complete.", do_exit=False, width=200,
@@ -176,7 +195,7 @@ def main():
     root = ctk.CTk()
     root.title("Platinum GDPS Launcher")
     root.geometry("1000x750")
-    root.iconbitmap("data/favicon.ico")
+    root.iconbitmap("data/icon.ico")
     img = tk.PhotoImage(file="data/icon.png")
     root.tk.call('wm', 'iconphoto', root._w, img)
 
@@ -235,6 +254,11 @@ def main():
     texture_pack_option_menu = texture_pack_selector(main_frame, 300, 40, data=tp_data)
     texture_pack_option_menu.pack(pady=10)
     texture_pack_option_menu.configure(state="disabled")
+
+    config_button = ctk.CTkButton(main_frame, text="Save Config", font=(font_family, 16),
+                                            text_color="white",
+                                            fg_color="#444444", hover_color="#555555", command=lambda: _thread.start_new_thread(configure, ()))
+    config_button.pack(pady=20)
 
     load()
     root.mainloop()

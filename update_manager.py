@@ -86,32 +86,41 @@ def get_branch_config(branch_id: int):
     return branch_config.get(branch_id)
 
 
-def change_config(game_version: int, mods: List[Dict[str, int]]):
-    config_path = os.path.join(appdata.get_home_folder(), ".platinum-launcher")
+def change_config(game_version: int, mods: List[Dict[str, int]], middleman: bool):
+    config_path = appdata.get_home_folder()
     if not os.path.exists(config_path):
         os.makedirs(config_path)
     with open(os.path.join(config_path, "version.json"), "w") as file:
         file.write(json.dumps({
             "game_version": game_version,
-            "mods": mods
+            "mods": mods,
+            "middleman": middleman
         }, indent=1))
 
 
 def load_config():
-    config_path = os.path.join(appdata.get_home_folder(), ".platinum-launcher")
+    config_path = appdata.get_home_folder()
     if not os.path.exists(config_path):
         os.makedirs(config_path)
     try:
         with open(os.path.join(config_path, "version.json"), "r") as file:
             data = json.load(file)
+            if not data.get("middleman"):
+                data["middleman"] = False
             return data
     except FileNotFoundError:
         return {"game_version": None, "mods": []}
 
 
 def install_game_and_mods(installed_mods: List[Dict[str, int]], installed_game_version: int):
-    appdata_path = os.path.join(appdata.get_home_folder(), ".platinum-launcher")
+    appdata_path = appdata.get_home_folder()
     base_path = os.path.join(appdata_path, "GDPS")
+
+    polz_path = os.path.join(os.path.join(base_path, "Resources"), "polzsave.dat")
+    polz_save = "nil"
+    if os.path.exists(polz_path):
+        with open(polz_path, "rb") as file:
+            polz_save = file.read()
 
     if os.path.exists(base_path):
         shutil.rmtree(base_path)
@@ -134,9 +143,13 @@ def install_game_and_mods(installed_mods: List[Dict[str, int]], installed_game_v
         if mod_info and mod_info["type"] == "mod" and mod_info.get("mod_type") == "TPack":
             download_and_extract(mod_id, target_path, True)
 
+    if polz_save != "nil":
+        with open(polz_path, "wb") as write_file:
+            write_file.write(polz_save)
+
 
 def install_branch(branch_id: int, version_id: int):
-    appdata_path = os.path.join(appdata.get_home_folder(), ".platinum-launcher")
+    appdata_path = appdata.get_home_folder()
     base_path = os.path.join(appdata_path, "GDPS")
     config = load_config()
     branch_c = get_branch_config(branch_id)
