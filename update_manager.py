@@ -183,20 +183,21 @@ def install_branch(branch_id: int, version_id: int):
 
             installed_mods = [mod for mod in installed_mods if get_branch_config(mod['branch_id']).get("mod_type") != "Client"]
             installed_mods.append({"id": version_id, "branch_id": branch_id})
-            change_config(installed_game_version, installed_mods)
+            change_config(installed_game_version, installed_mods, config.get("middleman"))
             install_game_and_mods(installed_mods, installed_game_version)
 
         elif mod_type == "TPack":
 
             installed_mods = [mod for mod in installed_mods if get_branch_config(mod['branch_id']).get("mod_type") != "TPack"]
             installed_mods.append({"id": version_id, "branch_id": branch_id})
-            change_config(installed_game_version, installed_mods)
+            change_config(installed_game_version, installed_mods, config.get("middleman"))
             install_game_and_mods(installed_mods, installed_game_version)
 
         else:
 
             download_and_extract(version_id, os.path.join(base_path, mod_path))
             installed_mods.append({"id": version_id, "branch_id": branch_id})
-            change_config(installed_game_version, installed_mods)
+            change_config(installed_game_version, installed_mods, config.get("middleman"))
+
 
 load_version_cache()

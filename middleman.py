@@ -30,7 +30,7 @@ def get_gjp():
                 f.write(f"\ngjp={gjp}")
         else:
             gjp = "null"
-            print(f"You need to (refresh) login in order to use {name} 1.9!\nLogin: Gear Icon => Account\nRefresh: Gear "
+            print(f"You need to (refresh) login in order to use {name} 1.9!\nLogin: Gear Icon => Account\nRefresh: Gear"
                   f"Icon => Account => More => Refresh Login")
     return gjp
 

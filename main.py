@@ -145,6 +145,7 @@ def configure(popup=True):
 
 def download():
     mods, game_version = configure(False)
+
     def run_and_popup():
         update_manager.install_game_and_mods(mods, game_version)
         root.after(0, lambda: info_popup("textOnly", "Info", text="Download complete.", do_exit=False, width=200,
@@ -163,7 +164,7 @@ def load():
     global mod_option_menu
     global version_option_menu
     config = update_manager.load_config()
-    if config.get("game_version") != None:
+    if config.get("game_version") is not None:
         game_version = config.get("game_version")
         versions = api.get_versions(2)
         version = [i for i in versions if i.get("id") == game_version]
@@ -256,8 +257,9 @@ def main():
     texture_pack_option_menu.configure(state="disabled")
 
     config_button = ctk.CTkButton(main_frame, text="Save Config", font=(font_family, 16),
-                                            text_color="white",
-                                            fg_color="#444444", hover_color="#555555", command=lambda: _thread.start_new_thread(configure, ()))
+                                  text_color="white",
+                                  fg_color="#444444", hover_color="#555555",
+                                  command=lambda: _thread.start_new_thread(configure, ()))
     config_button.pack(pady=20)
 
     load()

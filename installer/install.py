@@ -46,6 +46,7 @@ class InstallerApp(ctk.CTk):
         """Set the window icon."""
         icon_path = self.get_resource_path(icon_path)
         if os.path.isfile(icon_path):
+            self.iconbitmap(icon_path)
             img = PhotoImage(file=icon_path)
             self.tk.call('wm', 'iconphoto', self._w, img)
         else:
@@ -69,7 +70,12 @@ class InstallerApp(ctk.CTk):
             messagebox.showerror("Error", "Please select an installation directory.")
             return
 
-        if not os.path.exists(install_dir):
+        if os.path.exists(install_dir):
+            if os.listdir(install_dir):
+                messagebox.showerror("Error", "The selected installation directory is not empty. Please select an "
+                                              "empty directory.")
+                return
+        else:
             os.makedirs(install_dir)
 
         shutil.copy(self.get_resource_path("Platinum Launcher.exe"), install_dir)
@@ -90,8 +96,11 @@ class WelcomeFrame(ctk.CTkFrame):
         self.create_widgets()
 
     def create_widgets(self):
-        ctk.CTkLabel(self, text="Welcome to the Platinum Launcher Installer", font=(FONT_FAMILY, 16)).pack(anchor="nw", padx=10, pady=10)
-        ctk.CTkButton(self, text="Next", command=lambda: self.master.show_frame("select_dir")).pack(side="bottom", anchor="se", padx=10, pady=10)
+        a = ctk.CTkLabel(self, text="Welcome to the Platinum Launcher Installer", font=(FONT_FAMILY, 16))
+        a.pack(anchor="nw", padx=10, pady=10)
+        b = ctk.CTkButton(self, fg_color="#444444", hover_color="#555555",
+                          text="Next", command=lambda: self.master.show_frame("select_dir"))
+        b.pack(side="bottom", anchor="se", padx=10, pady=10)
 
 
 class SelectDirFrame(ctk.CTkFrame):
@@ -101,22 +110,27 @@ class SelectDirFrame(ctk.CTkFrame):
         self.create_widgets()
 
     def create_widgets(self):
-        ctk.CTkLabel(self, text="Select Installation Directory", font=(FONT_FAMILY, 14)).pack(anchor="nw", padx=10, pady=10)
+        c = ctk.CTkLabel(self, text="Select Launcher Installation Directory", font=(FONT_FAMILY, 14))
+        c.pack(anchor="nw", padx=10, pady=10)
 
         self.install_dir_entry = ctk.CTkEntry(self, textvariable=self.master.install_dir, width=300)
         self.install_dir_entry.pack(anchor="nw", padx=10, pady=5)
 
-        self.browse_button = ctk.CTkButton(self, text="Browse", command=self.select_dir)
+        self.browse_button = ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Browse",
+                                           command=self.select_dir)
         self.browse_button.pack(anchor="nw", padx=10, pady=10)
 
-        ctk.CTkButton(self, text="Next", command=lambda: self.master.show_frame("specify_path")).pack(side="bottom", anchor="se", padx=10, pady=10)
-        ctk.CTkButton(self, text="Back", command=lambda: self.master.show_frame("welcome")).place(x=10, y=262)
+        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Next",
+                      command=lambda: self.master.show_frame("specify_path")).pack(side="bottom", anchor="se",
+                                                                                   padx=10, pady=10)
+        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Back",
+                      command=lambda: self.master.show_frame("welcome")).place(x=10, y=262)
 
     def select_dir(self):
         directory = filedialog.askdirectory()
         if directory:
             self.master.install_dir.set(directory)
-            self.master.additional_path.set(directory)
+            self.master.additional_path.set(directory + "/game")
 
 
 class SpecifyPathFrame(ctk.CTkFrame):
@@ -126,16 +140,20 @@ class SpecifyPathFrame(ctk.CTkFrame):
         self.create_widgets()
 
     def create_widgets(self):
-        ctk.CTkLabel(self, text="Specify Additional Path", font=(FONT_FAMILY, 14)).pack(anchor="nw", padx=10, pady=10)
+        ctk.CTkLabel(self, text="Select GDPS installation directory", font=(FONT_FAMILY, 14)).pack(anchor="nw", padx=10,
+                                                                                                   pady=10)
 
         self.additional_path_entry = ctk.CTkEntry(self, textvariable=self.master.additional_path, width=300)
         self.additional_path_entry.pack(anchor="nw", padx=10, pady=5)
 
-        self.browse_button = ctk.CTkButton(self, text="Browse", command=self.select_path)
+        self.browse_button = ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Browse",
+                                           command=self.select_path)
         self.browse_button.pack(anchor="nw", padx=10, pady=10)
 
-        ctk.CTkButton(self, text="Next", command=self.master.install).pack(side="bottom", anchor="se", padx=10, pady=10)
-        ctk.CTkButton(self, text="Back", command=lambda: self.master.show_frame("select_dir")).place(x=10, y=262)
+        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Install",
+                      command=self.master.install).pack(side="bottom", anchor="se", padx=10, pady=10)
+        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Back",
+                      command=lambda: self.master.show_frame("select_dir")).place(x=10, y=262)
 
     def select_path(self):
         path = filedialog.askdirectory()
@@ -151,7 +169,8 @@ class CompleteFrame(ctk.CTkFrame):
 
     def create_widgets(self):
         ctk.CTkLabel(self, text="Installation Complete", font=(FONT_FAMILY, 16)).pack(anchor="nw", padx=10, pady=10)
-        ctk.CTkButton(self, text="Finish", command=self.master.quit).pack(side="bottom", anchor="se", padx=10, pady=10)
+        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Finish", command=self.master.quit).pack(
+            side="bottom", anchor="se", padx=10, pady=10)
 
 
 if __name__ == "__main__":
