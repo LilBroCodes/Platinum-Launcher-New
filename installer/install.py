@@ -108,7 +108,7 @@ class LicenseFrame(ctk.CTkFrame):
 
         # Insert the license text into the text box
         try:
-            with open("license.txt", "r") as file:
+            with open(self.master.get_resource_path("license.txt"), "r") as file:
                 license_text = file.read()
         except Exception as e:
             license_text = str(e)
