@@ -16,7 +16,6 @@ The **Platinum GDPS Launcher** is a custom launcher designed to simplify the ins
   - `Pillow` (`PIL`)
   - `tkinter`
   - `customtkinter`
-  - `appdata`
 
 Install the dependencies using pip:
 
