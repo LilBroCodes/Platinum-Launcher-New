@@ -5,6 +5,8 @@ import shutil
 import os
 import sys
 
+from dialogue import check_case_insensitive, info_popup
+
 FONT_FAMILY = "Roboto Medium"
 
 
@@ -20,12 +22,14 @@ class InstallerApp(ctk.CTk):
         # Define variables
         self.install_dir = ctk.StringVar()
         self.additional_path = ctk.StringVar()
+        self.create_desktop_shortcut = ctk.BooleanVar(value=True)
 
         # Create and pack frames
         self.frames = {
             "license": LicenseFrame(self),
             "select_dir": SelectDirFrame(self),
             "specify_path": SpecifyPathFrame(self),
+            "shortcut_options": ShortcutOptionsFrame(self),
             "complete": CompleteFrame(self)
         }
 
@@ -85,8 +89,23 @@ class InstallerApp(ctk.CTk):
         with open(os.path.join(install_dir, "config.json"), "w") as f:
             json.dump(config, f, indent=4)
 
-        messagebox.showinfo("Success", "Installation complete!")
+        if self.create_desktop_shortcut.get():
+            self.create_shortcut(install_dir, "desktop")
+
+        info_popup("textOnly", "Success", "Installation complete!", code=0, font_family=FONT_FAMILY, height=150, do_exit=True)
         self.quit()
+
+    def create_shortcut(self, install_dir, location):
+        shortcut_name = "Platinum Launcher.lnk"
+        target = os.path.join(install_dir, "Platinum Launcher.exe")
+        shortcut_path = os.path.join(os.path.join(os.environ["USERPROFILE"], "Desktop"), shortcut_name)
+
+        # Using winshell to create shortcuts
+        import winshell
+        with winshell.shortcut(shortcut_path) as link:
+            link.path = target
+            link.working_directory = install_dir
+            link.description = "Shortcut for Platinum Launcher"
 
 
 class LicenseFrame(ctk.CTkFrame):
@@ -175,8 +194,8 @@ class SpecifyPathFrame(ctk.CTkFrame):
                                            command=self.select_path)
         self.browse_button.pack(anchor="nw", padx=10, pady=10)
 
-        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Install",
-                      command=self.master.install).pack(side="right", anchor="se", padx=10, pady=10)
+        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Next",
+                      command=lambda: self.master.show_frame("shortcut_options")).pack(side="right", anchor="se", padx=10, pady=10)
         ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Back",
                       command=lambda: self.master.show_frame("select_dir")).pack(side="right", anchor="se", padx=10, pady=10)
 
@@ -184,6 +203,24 @@ class SpecifyPathFrame(ctk.CTkFrame):
         path = filedialog.askdirectory()
         if path:
             self.master.additional_path.set(path)
+
+
+class ShortcutOptionsFrame(ctk.CTkFrame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
+        self.create_widgets()
+
+    def create_widgets(self):
+        ctk.CTkLabel(self, text="Create Shortcuts", font=(FONT_FAMILY, 14)).pack(anchor="nw", padx=10, pady=10)
+        self.desktop_checkbox = ctk.CTkCheckBox(self, text="Create Desktop shortcut",
+                                                variable=self.master.create_desktop_shortcut)
+        self.desktop_checkbox.pack(anchor="nw", padx=10, pady=5)
+
+        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Install",
+                      command=self.master.install).pack(side="right", anchor="se", padx=10, pady=10)
+        ctk.CTkButton(self, fg_color="#444444", hover_color="#555555", text="Back",
+                      command=lambda: self.master.show_frame("specify_path")).pack(side="right", anchor="se", padx=10, pady=10)
 
 
 class CompleteFrame(ctk.CTkFrame):
