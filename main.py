@@ -213,7 +213,7 @@ def main():
                               text_color="#909090")
     text_label.pack(side="left", padx=10, pady=10)
 
-    version_label = ctk.CTkLabel(bottom_frame, text="Platinum GDPS Launcher 1.1", font=(font_family, 16),
+    version_label = ctk.CTkLabel(bottom_frame, text="Platinum GDPS Launcher 1.12b", font=(font_family, 16),
                                  text_color="#909090")
     version_label.pack(side="right", padx=10, pady=10)
 
