@@ -5,9 +5,46 @@ import shutil
 import os
 import sys
 
-from dialogue import check_case_insensitive, info_popup
-
 FONT_FAMILY = "Roboto Medium"
+
+
+def check_case_insensitive(variable, my_list):
+    variable_lower = variable.lower()
+    list_lower = [item.lower() for item in my_list]
+    return variable_lower in list_lower
+
+
+def info_popup(popup_type: str, title="CTKDialogue Popup", text="CTKDialogue Error Text", code=1, do_exit=False,
+               close="Exit", width=300, height=100, font_family="Arial"):
+    if not check_case_insensitive(popup_type, ["textOnly", "imageOnly", "textAndImage"]):
+        raise ValueError(f"Argument {popup_type} is not a valid type, expected 'textOnly', 'imageOnly',"
+                         f" 'textAndImage'. (Not case sensitive)")
+
+    popup_root = ctk.CTk()
+    popup_root.geometry(f"{width}x{height}")
+    popup_root.title(title)
+
+    # Make the window not resizable
+    popup_root.resizable(False, True)
+
+    def leave(event=None):
+        popup_root.destroy()
+        if do_exit:
+            exit(code)
+
+    popup_root.bind("<Return>", leave)
+
+    # Configure the label to display text on the left and wrap around
+    error_text = ctk.CTkLabel(master=popup_root, text=text, text_color="#ffffff", anchor="w", justify="left",
+                              wraplength=int(width*0.9333333333333333), font=(font_family, 12))
+    error_text.pack(pady=40, side="top")
+
+    exit_button = ctk.CTkButton(master=popup_root, text=close, command=leave)
+    exit_button.pack(pady=0, side="top")
+
+    popup_root.mainloop()
+
+    return popup_root
 
 
 class InstallerApp(ctk.CTk):
@@ -17,7 +54,6 @@ class InstallerApp(ctk.CTk):
         self.title("Platinum Launcher Installer")
         self.geometry("800x600")
         self.resizable(False, False)
-        self.set_icon("data/icon.png")
 
         # Define variables
         self.install_dir = ctk.StringVar()
@@ -89,23 +125,8 @@ class InstallerApp(ctk.CTk):
         with open(os.path.join(install_dir, "config.json"), "w") as f:
             json.dump(config, f, indent=4)
 
-        if self.create_desktop_shortcut.get():
-            self.create_shortcut(install_dir, "desktop")
-
         info_popup("textOnly", "Success", "Installation complete!", code=0, font_family=FONT_FAMILY, height=150, do_exit=True)
         self.quit()
-
-    def create_shortcut(self, install_dir, location):
-        shortcut_name = "Platinum Launcher.lnk"
-        target = os.path.join(install_dir, "Platinum Launcher.exe")
-        shortcut_path = os.path.join(os.path.join(os.environ["USERPROFILE"], "Desktop"), shortcut_name)
-
-        # Using winshell to create shortcuts
-        import winshell
-        with winshell.shortcut(shortcut_path) as link:
-            link.path = target
-            link.working_directory = install_dir
-            link.description = "Shortcut for Platinum Launcher"
 
 
 class LicenseFrame(ctk.CTkFrame):

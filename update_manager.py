@@ -1,6 +1,6 @@
 import json
 import os
-import appdata
+import appdata_get
 import requests
 import zipfile
 import api
@@ -36,14 +36,14 @@ version_cache = {}
 
 
 def save_version_cache():
-    cache_path = os.path.join(appdata.get_home_folder(), ".platinum-launcher", "version_cache.json")
+    cache_path = os.path.join(appdata_get.get_home_folder(), ".platinum-launcher", "version_cache.json")
     with open(cache_path, "w") as file:
         json.dump(version_cache, file, indent=1)
 
 
 def load_version_cache():
     global version_cache
-    cache_path = os.path.join(appdata.get_home_folder(), ".platinum-launcher", "version_cache.json")
+    cache_path = os.path.join(appdata_get.get_home_folder(), ".platinum-launcher", "version_cache.json")
     if os.path.exists(cache_path):
         with open(cache_path, "r") as file:
             version_cache = json.load(file)
@@ -87,7 +87,7 @@ def get_branch_config(branch_id: int):
 
 
 def change_config(game_version: int, mods: List[Dict[str, int]], middleman: bool):
-    config_path = appdata.get_home_folder()
+    config_path = appdata_get.get_home_folder()
     if not os.path.exists(config_path):
         os.makedirs(config_path)
     with open(os.path.join(config_path, "version.json"), "w") as file:
@@ -99,7 +99,7 @@ def change_config(game_version: int, mods: List[Dict[str, int]], middleman: bool
 
 
 def load_config():
-    config_path = appdata.get_home_folder()
+    config_path = appdata_get.get_home_folder()
     if not os.path.exists(config_path):
         os.makedirs(config_path)
     try:
@@ -113,7 +113,7 @@ def load_config():
 
 
 def install_game_and_mods(installed_mods: List[Dict[str, int]], installed_game_version: int):
-    appdata_path = appdata.get_home_folder()
+    appdata_path = appdata_get.get_home_folder()
     base_path = os.path.join(appdata_path, "GDPS")
 
     polz_path = os.path.join(os.path.join(base_path, "Resources"), "polzsave.dat")
@@ -149,7 +149,7 @@ def install_game_and_mods(installed_mods: List[Dict[str, int]], installed_game_v
 
 
 def install_branch(branch_id: int, version_id: int):
-    appdata_path = appdata.get_home_folder()
+    appdata_path = appdata_get.get_home_folder()
     base_path = os.path.join(appdata_path, "GDPS")
     config = load_config()
     branch_c = get_branch_config(branch_id)

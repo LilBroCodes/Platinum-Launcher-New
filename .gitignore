@@ -1,2 +1,4 @@
 /.zed/
 /.venv/
+/build/
+/installer/build/

@@ -6,7 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.zed" />
       <excludeFolder url="file://$MODULE_DIR$/build/Platinum Launcher/localpycs" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.12 (2)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.12 (Platinum Launcher)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

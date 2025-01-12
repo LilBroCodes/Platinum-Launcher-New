@@ -80,6 +80,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(b'Internal Server Error')
 
 
+# noinspection PyTypeChecker
 def run_server(server_class=HTTPServer, handler_class=RequestHandler, port=PORT):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)

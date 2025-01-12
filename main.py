@@ -6,7 +6,7 @@ import customtkinter as ctk
 
 from typing import List, Dict, Any
 import os
-import appdata
+import appdata_get
 
 from dialogue import info_popup
 import api
@@ -22,7 +22,7 @@ root = None
 
 
 def launch():
-    config_path = appdata.get_home_folder()
+    config_path = appdata_get.get_home_folder()
     gdps_path = os.path.join(config_path, "GDPS")
     exe_path = os.path.join(gdps_path, "PlatinumGDPS.exe")
     if os.path.exists(exe_path):
@@ -38,6 +38,8 @@ def launch():
 
 def creds():
     data = """
+         The Platinum Launcher was made with ❤ by LilBroCodes
+    
         Songs:
             Flourish (Platinum Pack Menu Theme) - Purrple Cat
 
@@ -197,9 +199,6 @@ def main():
     root = ctk.CTk()
     root.title("Platinum GDPS Launcher")
     root.geometry("1000x750")
-    root.iconbitmap("data/icon.png")
-    img = tk.PhotoImage(file="data/icon.png")
-    root.tk.call('wm', 'iconphoto', root._w, img)
 
     font_family = "Roboto Medium"
 
